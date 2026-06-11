@@ -1,205 +1,356 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Matyáš Odehnal — web, smart home, drony a hardware servis."
+      content="Matyas Odehnal — full-stack developer from Czech Republic. Websites, web apps, and side projects."
     />
-    <title>Matyáš Odehnal — Portfolio</title>
+    <title>Matyas Odehnal — Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="layout">
-      <aside class="sidebar" aria-label="Navigace">
-        <div class="sidebar__block">
-          <p class="sidebar__label">Sociální sítě</p>
-          <ul class="sidebar__links">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Instagram</a></li>
+    <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+
+    <header class="site-header">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <nav id="site-nav" class="nav-overlay" aria-hidden="true">
+      <button class="nav-overlay__close" type="button" aria-label="Close menu">
+        &times;
+      </button>
+      <div class="nav-overlay__inner">
+        <div class="nav-overlay__group">
+          <p class="nav-overlay__label">Social</p>
+          <ul class="nav-overlay__links">
+            <li>
+              <a href="https://github.com/Lokkisanek" target="_blank" rel="noopener noreferrer"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/matyáš-odehnal-97784739b"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/matyas.ode/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instagram</a
+              >
+            </li>
           </ul>
         </div>
-
-        <div class="sidebar__block">
-          <p class="sidebar__label">Menu</p>
-          <nav>
-            <ul class="sidebar__links">
-              <li><a href="#home">Domů</a></li>
-              <li><a href="#about">O mně</a></li>
-              <li><a href="#stack">Stack</a></li>
-              <li><a href="#experience">Zkušenosti</a></li>
-              <li><a href="#projects">Projekty</a></li>
-            </ul>
-          </nav>
+        <div class="nav-overlay__group">
+          <p class="nav-overlay__label">Menu</p>
+          <ul class="nav-overlay__links nav-overlay__links--large">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-
-        <div class="sidebar__block sidebar__block--end">
-          <p class="sidebar__label">Kontakt</p>
-          <a class="sidebar__email" href="mailto:hello@matyas.online"
-            >hello@matyas.online</a
+        <div class="nav-overlay__group">
+          <p class="nav-overlay__label">Get in touch</p>
+          <a class="nav-overlay__email" href="mailto:matoslav6@gmail.com"
+            >matoslav6@gmail.com</a
           >
         </div>
-      </aside>
+      </div>
+    </nav>
 
-      <main class="content">
-        <!-- Hero -->
-        <section id="home" class="section hero">
-          <p class="hero__eyebrow">Portfolio</p>
+    <a class="side-email" href="mailto:matoslav6@gmail.com">matoslav6@gmail.com</a>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero__inner">
           <h1 class="hero__title">
-            <span>WEB &amp;</span>
-            <span>TECH</span>
-            <span>DEVELOPER</span>
+            <span class="hero__line hero__line--accent" data-reveal>FULL STACK</span>
+            <span class="hero__line" data-reveal>DEVELOPER</span>
           </h1>
-          <p class="hero__lead">
-            Ahoj, jsem Matyáš. Stavím weby, automatizuji domácnosti a řeším
-            hardware — od SEO po FPV drony.
+          <p class="hero__lead" data-reveal>
+            Hi! I'm Matyas. I build fast, maintainable websites and web apps for clients
+            and my own projects — from idea to production.
           </p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#contact">Pojďme si psát</a>
-            <span class="badge">Dostupný pro nové projekty</span>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--primary" href="#contact">Let's talk</a>
+            <p class="hero__status">
+              <span class="hero__status-dot" aria-hidden="true"></span>
+              Accepting new projects
+            </p>
           </div>
+        </div>
 
-          <div class="stats">
-            <div class="stat">
-              <p class="stat__value">5+</p>
-              <p class="stat__label">Let zkušeností</p>
-            </div>
-            <div class="stat">
-              <p class="stat__value">—</p>
-              <p class="stat__label">Dokončených projektů</p>
-            </div>
-            <div class="stat">
-              <p class="stat__value">—</p>
-              <p class="stat__label">Oblastí služeb</p>
-            </div>
+        <aside class="hero-stats" aria-label="Statistics">
+          <div class="hero-stats__item">
+            <p class="hero-stats__value" data-count="3" data-suffix="+">0</p>
+            <p class="hero-stats__label">Years of experience</p>
           </div>
-        </section>
+          <div class="hero-stats__item">
+            <p class="hero-stats__value" data-count="19" data-suffix="+">0</p>
+            <p class="hero-stats__label">Completed projects</p>
+          </div>
+          <div class="hero-stats__item">
+            <p class="hero-stats__value" data-count="5" data-suffix="K+">0</p>
+            <p class="hero-stats__label">Hours in VS Code</p>
+          </div>
+        </aside>
+      </section>
 
-        <!-- About -->
-        <section id="about" class="section">
+      <div class="page-sections">
+        <section id="about" class="section reveal">
           <h2 class="section__quote">
-            Věřím v řešení na míru — každý projekt má jiné cíle, uživatele i
-            rozpočet.
+            I believe good software starts with understanding the problem — then shipping
+            something clear, fast, and easy to maintain.
           </h2>
           <div class="about">
             <div class="about__aside">
-              <p class="about__tag">To jsem já.</p>
-              <h3 class="about__name">Ahoj, jsem Matyáš.</h3>
+              <p class="about__tag">This is me.</p>
+              <h3 class="about__name">Hi, I'm Matyas.</h3>
             </div>
             <div class="about__body">
-              <p class="placeholder-text">
-                [Placeholder — krátký bio odstavec o tom, co děláš a pro koho.]
+              <p>
+                I'm a full-stack developer based in Třebíč, Czech Republic. I enjoy
+                interactive UIs, clean code, and modern tooling — from Figma prototypes to
+                production-ready apps.
               </p>
-              <p class="placeholder-text">
-                [Placeholder — druhý odstavec o přístupu, kvalitě, lokalitě
-                (ČR).]
+              <p>
+                I work on client websites, side projects, and open source. First 20 minutes
+                of consultation are free — reach out at
+                <a href="mailto:matoslav6@gmail.com">matoslav6@gmail.com</a>.
               </p>
             </div>
           </div>
         </section>
 
-        <!-- Stack -->
-        <section id="stack" class="section">
-          <h2 class="section__title">Můj stack</h2>
+        <section id="stack" class="section reveal">
+          <h2 class="section__title">My stack</h2>
           <div class="stack-grid">
             <div class="stack-group">
               <h3 class="stack-group__label">Frontend</h3>
               <ul class="chip-list">
-                <li class="chip chip--placeholder">—</li>
-                <li class="chip chip--placeholder">—</li>
-                <li class="chip chip--placeholder">—</li>
+                <li class="chip">HTML</li>
+                <li class="chip">CSS</li>
+                <li class="chip">JavaScript</li>
+                <li class="chip">TypeScript</li>
+                <li class="chip">React</li>
+                <li class="chip">Vue</li>
+                <li class="chip">Tailwind CSS</li>
               </ul>
             </div>
             <div class="stack-group">
-              <h3 class="stack-group__label">Backend &amp; nástroje</h3>
+              <h3 class="stack-group__label">Backend &amp; tools</h3>
               <ul class="chip-list">
-                <li class="chip chip--placeholder">—</li>
-                <li class="chip chip--placeholder">—</li>
+                <li class="chip">Node.js</li>
+                <li class="chip">PHP</li>
+                <li class="chip">Git</li>
+                <li class="chip">Figma</li>
+                <li class="chip">VS Code</li>
               </ul>
             </div>
             <div class="stack-group">
               <h3 class="stack-group__label">Smart home &amp; HW</h3>
               <ul class="chip-list">
-                <li class="chip chip--placeholder">—</li>
-                <li class="chip chip--placeholder">—</li>
+                <li class="chip">Home Assistant</li>
+                <li class="chip">Zigbee</li>
+                <li class="chip">PC &amp; iPhone repair</li>
+                <li class="chip">Professional drone video</li>
               </ul>
             </div>
           </div>
         </section>
 
-        <!-- Experience -->
-        <section id="experience" class="section">
-          <h2 class="section__title">Zkušenosti</h2>
+        <section id="experience" class="section reveal">
+          <h2 class="section__title">Experience</h2>
           <ol class="timeline">
             <li class="timeline__item">
               <div class="timeline__meta">
-                <span class="timeline__period">— —</span>
+                <span class="timeline__period">—</span>
               </div>
               <div class="timeline__content">
-                <h3 class="timeline__role">[Název pozice / role]</h3>
-                <p class="timeline__company">[Firma nebo vlastní projekty]</p>
+                <h3 class="timeline__role">[Role / position]</h3>
+                <p class="timeline__company">[Company or freelance]</p>
               </div>
             </li>
             <li class="timeline__item">
               <div class="timeline__meta">
-                <span class="timeline__period">— —</span>
+                <span class="timeline__period">—</span>
               </div>
               <div class="timeline__content">
-                <h3 class="timeline__role">[Název pozice / role]</h3>
-                <p class="timeline__company">[Firma nebo vlastní projekty]</p>
+                <h3 class="timeline__role">[Role / position]</h3>
+                <p class="timeline__company">[Company or freelance]</p>
               </div>
             </li>
           </ol>
         </section>
 
-        <!-- Projects -->
-        <section id="projects" class="section">
-          <h2 class="section__title">Vybrané projekty</h2>
+        <section id="projects" class="section reveal">
+          <h2 class="section__title section__title--display">Selected projects</h2>
           <div class="projects-grid">
             <article class="project-card">
-              <div class="project-card__thumb" aria-hidden="true"></div>
-              <p class="project-card__index">_01.</p>
-              <h3 class="project-card__title">[Název projektu]</h3>
-              <ul class="chip-list chip-list--inline">
-                <li class="chip chip--sm chip--placeholder">tag</li>
-                <li class="chip chip--sm chip--placeholder">tag</li>
-              </ul>
+              <a
+                class="project-card__link"
+                href="https://project-union.duckdns.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_01.</p>
+                <h3 class="project-card__title">Project Union</h3>
+                <p class="project-card__desc">
+                  Portal for graduation and student projects — browse, rate, and showcase
+                  work across schools.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">React</li>
+                  <li class="chip chip--sm">Node.js</li>
+                  <li class="chip chip--sm">Web app</li>
+                </ul>
+              </a>
             </article>
             <article class="project-card">
-              <div class="project-card__thumb" aria-hidden="true"></div>
-              <p class="project-card__index">_02.</p>
-              <h3 class="project-card__title">[Název projektu]</h3>
-              <ul class="chip-list chip-list--inline">
-                <li class="chip chip--sm chip--placeholder">tag</li>
-                <li class="chip chip--sm chip--placeholder">tag</li>
-              </ul>
+              <a
+                class="project-card__link"
+                href="https://skyblockhub.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_02.</p>
+                <h3 class="project-card__title">SkyblockHub</h3>
+                <p class="project-card__desc">
+                  Tools and intelligence for the Hypixel SkyBlock community.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">PHP</li>
+                  <li class="chip chip--sm">JavaScript</li>
+                  <li class="chip chip--sm">Community</li>
+                </ul>
+              </a>
             </article>
             <article class="project-card">
-              <div class="project-card__thumb" aria-hidden="true"></div>
-              <p class="project-card__index">_03.</p>
-              <h3 class="project-card__title">[Název projektu]</h3>
-              <ul class="chip-list chip-list--inline">
-                <li class="chip chip--sm chip--placeholder">tag</li>
-                <li class="chip chip--sm chip--placeholder">tag</li>
-              </ul>
+              <a
+                class="project-card__link"
+                href="https://github.com/Lokkisanek/SpinPot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_03.</p>
+                <h3 class="project-card__title">SpinPot</h3>
+                <p class="project-card__desc">
+                  Browser-based arcade game inspired by Clover Pit — fast rounds built with
+                  vanilla HTML, CSS, and JavaScript.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">HTML</li>
+                  <li class="chip chip--sm">CSS</li>
+                  <li class="chip chip--sm">JavaScript</li>
+                </ul>
+              </a>
+            </article>
+            <article class="project-card">
+              <a
+                class="project-card__link"
+                href="https://github.com/Lokkisanek/End-The-Game"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_04.</p>
+                <h3 class="project-card__title">End The Game</h3>
+                <p class="project-card__desc">
+                  Interactive browser game — gameplay, UI, and logic in JavaScript.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">JavaScript</li>
+                  <li class="chip chip--sm">Game</li>
+                  <li class="chip chip--sm">Web</li>
+                </ul>
+              </a>
+            </article>
+            <article class="project-card">
+              <a
+                class="project-card__link"
+                href="https://github.com/Lokkisanek/Hypixel-bazaar"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_05.</p>
+                <h3 class="project-card__title">Hypixel Bazaar</h3>
+                <p class="project-card__desc">
+                  Bazaar price tracker for Hypixel SkyBlock — live data and a lightweight
+                  front end.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">HTML</li>
+                  <li class="chip chip--sm">JavaScript</li>
+                  <li class="chip chip--sm">Hypixel</li>
+                </ul>
+              </a>
+            </article>
+            <article class="project-card">
+              <a
+                class="project-card__link"
+                href="https://github.com/Lokkisanek/hand-tracking-website"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-card__thumb" aria-hidden="true"></div>
+                <p class="project-card__index">_06.</p>
+                <h3 class="project-card__title">Hand Tracking Website</h3>
+                <p class="project-card__desc">
+                  Web experiment with camera-based hand tracking and interactive UI in
+                  TypeScript.
+                </p>
+                <ul class="chip-list chip-list--inline">
+                  <li class="chip chip--sm">TypeScript</li>
+                  <li class="chip chip--sm">Web</li>
+                  <li class="chip chip--sm">Interactive</li>
+                </ul>
+              </a>
             </article>
           </div>
         </section>
 
-        <!-- Contact -->
-        <section id="contact" class="section section--contact">
-          <h2 class="section__title">Máš projekt v hlavě?</h2>
-          <a class="contact-email" href="mailto:hello@matyas.online"
-            >hello@matyas.online</a
-          >
+        <section id="contact" class="section section--contact reveal">
+          <h2 class="section__title section__title--display">Have a project in mind?</h2>
+          <a class="contact-email" href="mailto:matoslav6@gmail.com">matoslav6@gmail.com</a>
           <footer class="site-footer">
-            <p>Design &amp; build — Matyáš Odehnal · <span id="year"></span></p>
+            <p>
+              Design &amp; build — Matyas Odehnal ·
+              <a href="https://odehnal.matyas.online">odehnal.matyas.online</a> ·
+              <span id="year"></span>
+            </p>
           </footer>
         </section>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <script src="js/main.js"></script>
   </body>
