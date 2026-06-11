@@ -1,25 +1,73 @@
 # Portfolio 3.0
 
-Osobní portfolio [Matyáše Odehnala](https://matyas.online) — statický web připravený pro nginx.
+Personal portfolio of [Matyas Odehnal](https://odehnal.matyas.online).
 
-## Stav
+Based on [Tajmirul/portfolio-2.0](https://github.com/Tajmirul/portfolio-2.0) — design & animations by [Tajmirul Islam](https://www.tajmirul.site/).
 
-Základní skelet layoutu (inspirace: [tajmirul.site](https://www.tajmirul.site/)) — placeholdery, žádný build krok.
+## Is it static? (nginx / CasaOS)
 
-## Lokální náhled
+**Ano — po buildu.** Projekt je Next.js, ale s `output: 'export'` vznikne složka **`out/`** s čistým HTML/CSS/JS. Tu zkopíruješ do nginx — **na serveru nepotřebuješ Node.js**.
 
-Otevři `index.html` v prohlížeči, nebo:
+Build musíš spustit na PC (nebo v CI), kde máš Node.js. `pnpm` není nutný — stačí **npm**.
+
+## Lokální vývoj
+
+1. Nainstaluj [Node.js LTS](https://nodejs.org/) (ověř: `node -v` a `npm -v`).
+2. V rootu projektu:
+
+PowerShell často blokuje `npm` (execution policy). Použij **`npm.cmd`** nebo **CMD**:
 
 ```bash
-npx serve .
+npm.cmd install
+npm.cmd run dev
 ```
 
-## Nasazení na CasaOS (nginx:alpine)
+Nebo v PowerShellu jednorázově: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 
-Zkopíruj celý obsah repa do webrootu nginxu (typicky `/usr/share/nginx/html`):
+```bash
+npm install
+npm run dev
+```
 
-- `index.html`
-- `css/`
-- `js/`
+Otevři [http://localhost:3000](http://localhost:3000).
 
-Žádný Node.js ani build není potřeba.
+## Build pro nginx (CasaOS)
+
+```bash
+npm install
+npm run build
+```
+
+Vznikne složka **`out/`**. Její obsah zkopíruj do webrootu nginxu, např.:
+
+```
+/usr/share/nginx/html/
+```
+
+### Příklad nginx konfigurace
+
+```nginx
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ $uri/index.html =404;
+    }
+}
+```
+
+Volitelný náhled buildu lokálně:
+
+```bash
+npm run preview
+```
+
+## Obsah webu
+
+Uprav `lib/data.ts` — kontakt, sociální sítě, stack, projekty, zkušenosti.
+
+## Deploy na Vercel (alternativa)
+
+Místo nginx můžeš nasadit na Vercel — tam Node na serveru řeší platforma (`npm run build` bez ručního kopírování `out/`).
